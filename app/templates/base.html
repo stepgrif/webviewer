@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}File Viewer{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">📁 File Viewer</a>
+    <nav class="crumbs">
+      {% for crumb in crumbs %}
+        {% if not loop.last %}
+          <a href="/browse/{{ crumb.path }}">{{ crumb.name }}</a><span class="sep">/</span>
+        {% else %}
+          <span class="current">{{ crumb.name }}</span>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

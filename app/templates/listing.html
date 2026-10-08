@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}/{{ rel_path }} — File Viewer{% endblock %}
+{% block content %}
+<table class="listing">
+  <thead>
+    <tr><th>Name</th><th>Size</th><th>Modified (UTC)</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% if rel_path %}
+    <tr>
+      <td colspan="4">
+        <a class="entry dir" href="/browse/{{ crumbs[-2].path }}">⬆️ ..</a>
+      </td>
+    </tr>
+    {% endif %}
+    {% for e in entries %}
+    <tr>
+      <td>
+        <a class="entry {{ e.kind }}" href="/browse/{{ e.path }}">
+          {%- if e.is_dir %}📂{% elif e.kind == 'md' %}📝{% elif e.kind == 'html' %}🌐{% else %}📄{% endif %}
+          {{ e.name }}</a>
+      </td>
+      <td class="size">{{ e.size }}</td>
+      <td class="mtime">{{ e.mtime }}</td>
+      <td class="actions">
+        {% if not e.is_dir %}
+        <a class="btn" href="/download/{{ e.path }}" title="Download">⬇ Download</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    {% if not entries %}
+    <tr><td colspan="4" class="empty">This folder is empty.</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

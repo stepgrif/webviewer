@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ filename }} — File Viewer{% endblock %}
+{% block content %}
+<div class="file-actions">
+  <a class="btn" href="/browse/{{ rel_path }}?raw=1">View raw</a>
+  <a class="btn" href="/download/{{ rel_path }}">⬇ Download</a>
+</div>
+<article class="markdown-body">
+  {{ body | safe }}
+</article>
+{% endblock %}

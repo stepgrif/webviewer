@@ -1,0 +1,12 @@
+services:
+  webviewer:
+    build: .
+    container_name: webviewer
+    ports:
+      - "8123:8000"
+    volumes:
+      - /home/vs3:/data:ro
+    environment:
+      - ROOT_DIR=/data
+      - SHOW_HIDDEN=false
+    restart: unless-stopped

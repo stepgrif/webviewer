@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% set crumbs = [{"name": "Home", "path": ""}] %}
+{% block title %}{{ code }} — File Viewer{% endblock %}
+{% block content %}
+<div class="error-box">
+  <h1>{{ code }}</h1>
+  <p>{{ message }}</p>
+  <a class="btn" href="/">Back to home</a>
+</div>
+{% endblock %}
